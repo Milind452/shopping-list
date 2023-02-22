@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import NavBar from "../components/NavBar/NavBar";
+import NavBar from "../components/Navbar/Navbar";
 
 const ListWrapper = styled.div`
     display: flex;
