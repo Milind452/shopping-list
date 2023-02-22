@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import Header from "./components/Header/Header";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -20,7 +21,9 @@ function App() {
     return (
         <>
             <GlobalStyle />
-            <AppWrapper>Hello</AppWrapper>
+            <AppWrapper>
+                <Header />
+            </AppWrapper>
         </>
     );
 }
