@@ -1,5 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header/Header";
+import Lists from "./pages/Lists";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,7 +25,12 @@ function App() {
         <>
             <GlobalStyle />
             <AppWrapper>
-                <Header />
+                <BrowserRouter>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Lists />} />
+                    </Routes>
+                </BrowserRouter>
             </AppWrapper>
         </>
     );
