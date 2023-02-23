@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Lists from "./pages/Lists";
+import ListDetail from "./pages/ListDetail";
+import ListForm from "./pages/ListForm";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,6 +31,11 @@ function App() {
                     <Header />
                     <Routes>
                         <Route path="/" element={<Lists />} />
+                        <Route
+                            path="/list/:listId/new"
+                            element={<ListForm />}
+                        />
+                        <Route path="/list/:listId" element={<ListDetail />} />
                     </Routes>
                 </BrowserRouter>
             </AppWrapper>
