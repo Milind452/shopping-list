@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+
+import { ItemsContext } from "../context/ItemsContext";
+
+import styled from "styled-components";
+
 import Navbar from "../components/Navbar/Navbar";
 import ListItem from "../components/ListItem/ListItem";
 
@@ -16,9 +19,7 @@ function ListDetail() {
     let navigate = useNavigate();
     const { listId } = useParams();
 
-    const [loading, error, data] = useFetch(
-        "https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/items/"
-    );
+    const {loading, error, items: data} = useContext(ItemsContext)
 
     const [items, setItems] = useState([]);
 
