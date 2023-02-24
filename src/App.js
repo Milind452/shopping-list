@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { ListsContextProvider } from "./context/ListsContext";
+
 import Header from "./components/Header/Header";
 import Lists from "./pages/Lists";
 import ListDetail from "./pages/ListDetail";
@@ -29,14 +31,19 @@ function App() {
             <AppWrapper>
                 <BrowserRouter>
                     <Header />
-                    <Routes>
-                        <Route path="/" element={<Lists />} />
-                        <Route
-                            path="/list/:listId/new"
-                            element={<ListForm />}
-                        />
-                        <Route path="/list/:listId" element={<ListDetail />} />
-                    </Routes>
+                    <ListsContextProvider>
+                        <Routes>
+                            <Route path="/" element={<Lists />} />
+                            <Route
+                                path="/list/:listId/new"
+                                element={<ListForm />}
+                            />
+                            <Route
+                                path="/list/:listId"
+                                element={<ListDetail />}
+                            />
+                        </Routes>
+                    </ListsContextProvider>
                 </BrowserRouter>
             </AppWrapper>
         </>
