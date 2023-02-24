@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ItemsContext } from "../context/ItemsContext";
@@ -19,15 +19,11 @@ function ListDetail() {
     let navigate = useNavigate();
     const { listId } = useParams();
 
-    const {loading, error, items: data} = useContext(ItemsContext)
-
-    const [items, setItems] = useState([]);
+    const {loading, error, items, fetchItems } = useContext(ItemsContext)
 
     useEffect(() => {
-        data &&
-            listId &&
-            setItems(data.filter((item) => item.listId === parseInt(listId)));
-    }, [data, listId]);
+        listId && !items.length && fetchItems(listId);
+    }, [fetchItems, items, listId]);
 
     return (
         <>
