@@ -6,7 +6,7 @@ import { ListsContext } from "../context/ListsContext";
 
 import styled from "styled-components";
 
-import NavBar from "../components/Navbar/Navbar";
+import NavBar from "../components/NavBar/NavBar";
 import ListItem from "../components/ListItem/ListItem";
 
 const ListItemWrapper = styled.div`

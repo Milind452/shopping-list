@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
 import { ListsContext } from "../context/ListsContext";
-import NavBar from "../components/Navbar/Navbar";
+import NavBar from "../components/NavBar/NavBar";
 
 const ListWrapper = styled.div`
     display: flex;
