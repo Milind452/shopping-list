@@ -6,7 +6,7 @@ import { ListsContext } from "../context/ListsContext";
 
 import styled from "styled-components";
 
-import Navbar from "../components/Navbar/Navbar";
+import NavBar from "../components/Navbar/Navbar";
 import ListItem from "../components/ListItem/ListItem";
 
 const ListItemWrapper = styled.div`
@@ -33,7 +33,7 @@ function ListDetail() {
     return (
         <>
             {navigate && (
-                <Navbar
+                <NavBar
                     goBack={() => navigate(-1)}
                     openForm={() => navigate(`/list/${listId}/new`)}
                     title={list && list.title}

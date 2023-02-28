@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 
 import { ItemsContext } from "../context/ItemsContext";
 
-import Navbar from "../components/Navbar/Navbar";
+import NavBar from "../components/Navbar/Navbar";
 import FormItem from "../components/FormItem/FormItem";
 import Button from "../components/Button/Button";
 
@@ -40,7 +40,7 @@ function ListForm() {
     return (
         <>
             {navigate && (
-                <Navbar goBack={() => navigate(-1)} title={`Add Item`} />
+                <NavBar goBack={() => navigate(-1)} title={`Add Item`} />
             )}
             <FormWrapper>
                 <form onSubmit={onSubmit}>
