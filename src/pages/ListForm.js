@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 
 import { ItemsContext } from "../context/ItemsContext";
 
-import NavBar from "../components/NavBar/NavBar";
+import NavBar from "../components/NavigationBar/NavBar";
 import FormItem from "../components/FormItem/FormItem";
 import Button from "../components/Button/Button";
 
