@@ -1,11 +1,31 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 export const ItemsContext = createContext();
 
+const initialState = { items: [], loading: false, error: "" };
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "GET_ITEMS_SUCCESS":
+            return {
+                ...state,
+                items: action.payload,
+                loading: false,
+            };
+        case "GET_ITEMS_ERROR":
+            return {
+                ...state,
+                lists: [],
+                loading: false,
+                error: action.payload,
+            };
+
+        default:
+            return state;
+    }
+};
+
 export const ItemsContextProvider = ({ children }) => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [items, setItems] = useState([]);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const fetchItems = useCallback(async (listId) => {
         try {
@@ -14,17 +34,15 @@ export const ItemsContextProvider = ({ children }) => {
             );
             const result = await data.json();
             if (result) {
-                setItems(result);
-                setLoading(false);
+                dispatch({ type: "GET_ITEMS_SUCCESS", payload: result });
             }
         } catch (e) {
-            setLoading(false);
-            setError(e.message);
+            dispatch({ type: "GET_ITEMS_ERROR", payload: e.message });
         }
     }, []);
 
     return (
-        <ItemsContext.Provider value={{ items, loading, error, fetchItems }}>
+        <ItemsContext.Provider value={{ ...state, fetchItems }}>
             {children}
         </ItemsContext.Provider>
     );
