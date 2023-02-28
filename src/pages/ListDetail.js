@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ItemsContext } from "../context/ItemsContext";
+import { ListsContext } from "../context/ListsContext";
 
 import styled from "styled-components";
 
@@ -19,11 +20,15 @@ function ListDetail() {
     let navigate = useNavigate();
     const { listId } = useParams();
 
-    const {loading, error, items, fetchItems } = useContext(ItemsContext)
+    const { loading, error, items, fetchItems } = useContext(ItemsContext);
+    const { list, fetchList } = useContext(ListsContext);
 
     useEffect(() => {
         listId && !items.length && fetchItems(listId);
     }, [fetchItems, items, listId]);
+    useEffect(() => {
+        listId && fetchList(listId);
+    }, [fetchList, listId]);
 
     return (
         <>
@@ -31,6 +36,7 @@ function ListDetail() {
                 <Navbar
                     goBack={() => navigate(-1)}
                     openForm={() => navigate(`/list/${listId}/new`)}
+                    title={list && list.title}
                 />
             )}
             <ListItemWrapper>
